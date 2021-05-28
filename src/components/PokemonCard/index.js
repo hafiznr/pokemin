@@ -3,6 +3,7 @@
 import { css, jsx } from '@emotion/react';
 import { Link, useHistory } from "react-router-dom";
 import { Badge, Box, Image, Button } from "@chakra-ui/react";
+import { getPokemonNumber } from '../../utils';
 
 const PokemonCard = ({
   id, 
@@ -24,10 +25,7 @@ const PokemonCard = ({
     fontWeight: 'bold'
   });
 
-  const parsedId = id?.toLocaleString('en-US', {
-    minimumIntegerDigits: 3,
-    useGrouping: false
-  });
+  const parsedId = getPokemonNumber(id);
 
   const handleClickRelease = (e) => {
     e.stopPropagation();

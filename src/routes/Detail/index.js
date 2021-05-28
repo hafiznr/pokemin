@@ -8,12 +8,13 @@ import { GET_POKEMON } from './queries';
 import { jsx, css } from '@emotion/react';
 import SuccessModal from './components/SuccessModal';
 import FailedModal from './components/FailedModal';
-import { capitalizeFirstLetter } from '../../utils';
+import { capitalizeFirstLetter, getPokemonNumber } from '../../utils';
 import { Table, Tbody, Td, Tr } from '@chakra-ui/table';
 import { Button } from '@chakra-ui/button';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 import TopBar from '../../components/TopBar';
 import PokemonType from '../../components/PokemonType';
+import { ListItem, OrderedList } from '@chakra-ui/layout';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -95,8 +96,8 @@ const Detail = () => {
 
   const tableContent = [
     {
-      label: 'ID',
-      value: id
+      label: 'Number',
+      value: getPokemonNumber(id)
     },
     {
       label: 'Types',
@@ -114,7 +115,14 @@ const Detail = () => {
     },
     {
       label: 'Abilities',
-      value: abilities?.map(item => item.ability.name).join(", ")
+      // value: abilities?.map(item => item.ability.name).join(", "),
+      value: (
+        <OrderedList textTransform="capitalize">
+          {abilities?.map(item => (
+            <ListItem>{item.ability.name}</ListItem>
+          ))}
+        </OrderedList>
+      )
     },
     {
       label: 'Base experience',
@@ -136,7 +144,7 @@ const Detail = () => {
           <Tbody>
             {tableContent.map(content => (
               <Tr>
-                <Td>{content.label}</Td>
+                <Td maxWidth="84px">{content.label}</Td>
                 <Td>{content.value}</Td>
               </Tr>
             ))}
