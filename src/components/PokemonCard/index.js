@@ -9,6 +9,7 @@ const PokemonCard = ({
   name, 
   image, 
   isMyPokemon,
+  owned,
   onRelease
 }) => {
   const history = useHistory();
@@ -43,7 +44,6 @@ const PokemonCard = ({
   }
 
   return (
-    // <Link css={linkStyle}>
       <Box 
         d="grid" 
         bg="gray.100" 
@@ -52,9 +52,18 @@ const PokemonCard = ({
         mb="2" 
         gridGap={4}
         gridTemplateColumns="96px 1fr"
+        padding="8px"
         onClick={handleClickCard}
       >
-        <Image src={image} alt={name}/>
+        <Image 
+          src={image} 
+          alt={name} 
+          loading="lazy" 
+          width="96px" 
+          height="96px"
+          bgColor="white"
+          borderRadius="8px"
+        />
         <Box>
           <Badge borderRadius="full" colorScheme="blackAlpha">
             #{parsedId}
@@ -76,13 +85,15 @@ const PokemonCard = ({
               Release
             </Button>
           ) : (
-            <Badge borderRadius="full" colorScheme="telegram">
-              Owned
+            <Badge 
+              borderRadius="full" 
+              colorScheme={owned ? "telegram" : "yellow"}
+            >
+              {owned ? `Owned: ${owned}` : 'Not owned'}
             </Badge>
           )}
         </Box>
       </Box>
-    // </Link>
   )
 }
 

@@ -33,6 +33,7 @@ const MenuBar = ({pathname}) => {
       zIndex="2"
       transform="translate(-50%)"
       width="100%"
+      boxShadow="2px 2px 23px 7px rgb(0 0 0 / 50%)"
     >
       <Link to="/" css={linkStyle}>
         <Box
@@ -41,7 +42,6 @@ const MenuBar = ({pathname}) => {
           bg="red.500"
           height="100%"
           p="12px"
-          borderTopLeftRadius="8px"
           fontWeight="bold"
           borderRight="0.5px solid white"
         >
@@ -58,7 +58,6 @@ const MenuBar = ({pathname}) => {
           bg="red.500"
           height="100%"
           p="12px"
-          borderTopRightRadius="8px"
           fontWeight="bold"
           borderLeft="0.5px solid white"
         >

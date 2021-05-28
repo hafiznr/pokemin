@@ -4,6 +4,8 @@ import { css, jsx } from '@emotion/react';
 import { useQuery, gql } from '@apollo/client';
 import PokemonCard from '../../components/PokemonCard';
 import { Box } from '@chakra-ui/layout';
+import { useContext } from 'react';
+import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -24,6 +26,17 @@ const GET_POKEMONS = gql`
 `;
 
 const Landing = () => {
+  const { myPokemonData } = useContext(MyPokemonContext);
+
+  const ownedData = {};
+  myPokemonData.forEach(item => {
+    if (ownedData[item.id]) {
+      ownedData[item.id]++;
+    } else {
+      ownedData[item.id] = 1;
+    }
+  });
+
   const { loading, error, data } = useQuery(GET_POKEMONS, {
     variables: {
       limit: 10,
@@ -41,7 +54,7 @@ const Landing = () => {
   })
 
   return (
-    <Box pb="50px">
+    <Box pb="70px">
       Landing
 
       <div>
@@ -51,6 +64,7 @@ const Landing = () => {
               id={pokemon.id}
               name={pokemon.name}
               image={pokemon.image}
+              owned={ownedData[pokemon.id] || 0}
             />
           )
         })}
