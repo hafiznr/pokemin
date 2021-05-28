@@ -9,12 +9,13 @@ import { jsx, css } from '@emotion/react';
 import SuccessModal from './components/SuccessModal';
 import FailedModal from './components/FailedModal';
 import { capitalizeFirstLetter, getPokemonNumber } from '../../utils';
-import { Table, Tbody, Td, Tr } from '@chakra-ui/table';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table';
 import { Button } from '@chakra-ui/button';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 import TopBar from '../../components/TopBar';
 import PokemonType from '../../components/PokemonType';
-import { ListItem, OrderedList } from '@chakra-ui/layout';
+import { Box, ListItem, OrderedList, Text } from '@chakra-ui/layout';
+import { Tag } from '@chakra-ui/tag';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -115,7 +116,6 @@ const Detail = () => {
     },
     {
       label: 'Abilities',
-      // value: abilities?.map(item => item.ability.name).join(", "),
       value: (
         <OrderedList textTransform="capitalize">
           {abilities?.map(item => (
@@ -125,60 +125,80 @@ const Detail = () => {
       )
     },
     {
-      label: 'Base experience',
+      label: 'Base exp.',
       value: base_experience
     }
   ]
 
   return (
-    <div className="detail">
+    <React.Fragment>
       <TopBar />
 
-      <h1>{capitalizedName}</h1>
-      <div css={summaryStyles}>
-        <div css={imagesStyles}>
-          <img src={sprites?.front_default} alt={pokemonId} />
-          <img src={sprites?.back_default} alt={pokemonId} />
+      <Box className="detail" padding="8px 16px 78px 16px">
+        <Box textAlign="center" fontSize="2xl" fontWeight="bold">
+          {capitalizedName}
+        </Box>
+        <div css={summaryStyles}>
+          <div css={imagesStyles}>
+            <img src={sprites?.front_default} alt={pokemonId} />
+            <img src={sprites?.back_default} alt={pokemonId} />
+          </div>
+          <Table>
+            <Tbody>
+              {tableContent.map(content => (
+                <Tr>
+                  <Td maxWidth="84px">{content.label}</Td>
+                  <Td>{content.value}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
         </div>
-        <Table>
-          <Tbody>
-            {tableContent.map(content => (
-              <Tr>
-                <Td maxWidth="84px">{content.label}</Td>
-                <Td>{content.value}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </div>
-      <h2>Moves</h2>
-      <h2>Stats</h2>
-
-      <div className="fixed-bottom" css={btnWrapperStyles}>
-        <Button 
-          size="lg"
-          onClick={handleClickCatch}
+        <Box fontSize="2xl" mb="4px">Moves</Box>
+        <Box 
+          display="flex" 
+          flexWrap="wrap"
+          overflow="scroll"
+          maxHeight="100px"
         >
-          Catch!
-        </Button>
-      </div>
+          {moves?.map(item => (
+            <Tag size="lg" mr="4px" mb="4px">{item.move.name}</Tag>
+          ))}
+        </Box>
 
-      <SuccessModal
-        isOpen={showModal === 'success'}
-        pokemon={capitalizedName}
-        image={sprites?.front_default}
-        onClose={() => setShowModal('')}
-        onSubmit={handleAddPokemon}
-      />
+        <Box
+          width="100%"
+          textAlign="center"
+          margin="16px 0"
+        >
+          <Button 
+            size="lg"
+            colorScheme="twitter"
+            width="100%"
+            onClick={handleClickCatch}
+          >
+            Catch!
+          </Button>
+        </Box>
 
-      <FailedModal
-        isOpen={showModal === 'failed'}
-        pokemon={capitalizedName}
-        image={sprites?.back_default}
-        onClose={() => setShowModal('')}
-        onRetry={handleClickCatch}
-      />
-    </div>
+        <SuccessModal
+          isOpen={showModal === 'success'}
+          pokemon={capitalizedName}
+          image={sprites?.front_default}
+          onClose={() => setShowModal('')}
+          onSubmit={handleAddPokemon}
+        />
+
+        <FailedModal
+          isOpen={showModal === 'failed'}
+          pokemon={capitalizedName}
+          image={sprites?.back_default}
+          onClose={() => setShowModal('')}
+          onRetry={handleClickCatch}
+        />
+      </Box>
+    </React.Fragment>
+
   );
 }
 

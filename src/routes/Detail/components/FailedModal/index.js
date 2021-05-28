@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Button } from "@chakra-ui/button";
-import { Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/modal";
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/modal";
 import { jsx, css } from "@emotion/react";
 
 const FailedModal = ({
@@ -32,13 +32,20 @@ const FailedModal = ({
             <img src={image} alt={pokemon} css={imgStyle} />
             <br />
             <Button
-              margin="8px 0"
               colorScheme="twitter"
               size="lg"
               width="100%"
               onClick={onRetry}
             >
               Try again!
+            </Button>
+            <Button
+              m="8px 0"
+              size="lg"
+              width="100%"
+              onClick={onClose}
+            >
+              Close
             </Button>
           </div>
         </ModalBody>
