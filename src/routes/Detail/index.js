@@ -9,10 +9,11 @@ import { jsx, css } from '@emotion/react';
 import SuccessModal from './components/SuccessModal';
 import FailedModal from './components/FailedModal';
 import { capitalizeFirstLetter } from '../../utils';
-import { Table } from '@chakra-ui/table';
+import { Table, Tbody, Td, Tr } from '@chakra-ui/table';
 import { Button } from '@chakra-ui/button';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 import TopBar from '../../components/TopBar';
+import PokemonType from '../../components/PokemonType';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -92,6 +93,35 @@ const Detail = () => {
     setShowModal('');
   }
 
+  const tableContent = [
+    {
+      label: 'ID',
+      value: id
+    },
+    {
+      label: 'Types',
+      value: types?.map((item, i) => (
+        <PokemonType key={i} type={item.type.name} />
+      ))
+    },
+    {
+      label: 'Height',
+      value: height
+    },
+    {
+      label: 'Weight',
+      value: weight
+    },
+    {
+      label: 'Abilities',
+      value: abilities?.map(item => item.ability.name).join(", ")
+    },
+    {
+      label: 'Base experience',
+      value: base_experience
+    }
+  ]
+
   return (
     <div className="detail">
       <TopBar />
@@ -103,32 +133,14 @@ const Detail = () => {
           <img src={sprites?.back_default} alt={pokemonId} />
         </div>
         <Table>
-          <tbody>
-            <tr>
-              <td>ID</td>
-              <td>{id}</td>
-            </tr>
-            <tr>
-              <td>Types</td>
-              <td>{types?.map(item => item.type.name).join(", ")}</td>
-            </tr>
-            <tr>
-              <td>height</td>
-              <td>{height}</td>
-            </tr>
-            <tr>
-              <td>weight</td>
-              <td>{weight}</td>
-            </tr>
-            <tr>
-              <td>abilites</td>
-              <td>{abilities?.map(item => item.ability.name).join(", ")}</td>
-            </tr>
-            <tr>
-              <td>Base experience</td>
-              <td>{base_experience}</td>
-            </tr>
-          </tbody>
+          <Tbody>
+            {tableContent.map(content => (
+              <Tr>
+                <Td>{content.label}</Td>
+                <Td>{content.value}</Td>
+              </Tr>
+            ))}
+          </Tbody>
         </Table>
       </div>
       <h2>Moves</h2>
