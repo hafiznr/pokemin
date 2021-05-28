@@ -4,6 +4,9 @@ import { Box } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 
+import HomeIcon from '../CustomIcon/HomeIcon';
+import PokeballIcon from '../CustomIcon/PokeballIcon';
+
 const MenuBar = ({pathname}) => {
   const isHome = pathname === '/';
   const isMyPokemon = pathname === '/mypokemon';
@@ -15,7 +18,7 @@ const MenuBar = ({pathname}) => {
       color: '#fff',
       textDecoration: 'none'
     }
-  })
+  });
 
   return (
     <Box 
@@ -33,29 +36,35 @@ const MenuBar = ({pathname}) => {
     >
       <Link to="/" css={linkStyle}>
         <Box
-          textColor="white"
+          textColor={isHome ? 'white' : 'red.200'}
           textDecor="none"
-          bg={isHome ? 'red.400' : 'red.500'}
+          bg="red.500"
           height="100%"
-          p="16px"
+          p="12px"
           borderTopLeftRadius="8px"
-          borderBottomWidth="3px"
-          borderBottomColor={isHome ? 'gray.100' : 'red.500'}
+          fontWeight="bold"
+          borderRight="0.5px solid white"
         >
+          <Box>
+            <HomeIcon size="22" color={isHome ? 'white' : '#FEB2B2'}/>
+          </Box>
           Home
         </Box>
       </Link>
       <Link to="/mypokemon" css={linkStyle}>
         <Box
-          textColor="white"
+          textColor={isMyPokemon ? 'white' : 'red.200'}
           textDecor="none"
-          bg={isMyPokemon ? 'red.400' : 'red.500'}
+          bg="red.500"
           height="100%"
-          p="16px"
+          p="12px"
           borderTopRightRadius="8px"
-          borderBottomWidth="3px"
-          borderBottomColor={isMyPokemon ? 'gray.100' : 'red.500'}
+          fontWeight="bold"
+          borderLeft="0.5px solid white"
         >
+          <Box>
+            <PokeballIcon color={isMyPokemon ? 'white' : '#FEB2B2'}/>
+          </Box>
           My Pokemon
         </Box>
       </Link>

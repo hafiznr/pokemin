@@ -42,9 +42,7 @@ const Layout = ({route, location}) => {
       <div css={layoutStyles}>
         <main>
           {renderRoutes(route.routes)}
-          {!pathname.includes('/pokemon') && (
-            <MenuBar pathname={pathname} />
-          )}
+          <MenuBar pathname={pathname} />
         </main>
       </div>
       
