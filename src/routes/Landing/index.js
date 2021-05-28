@@ -1,11 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import React from 'react';
 import { css, jsx } from '@emotion/react';
 import { useQuery, gql } from '@apollo/client';
 import PokemonCard from '../../components/PokemonCard';
 import { Box } from '@chakra-ui/layout';
 import { useContext } from 'react';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
+import TopBar from '../../components/TopBar';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -54,22 +56,24 @@ const Landing = () => {
   })
 
   return (
-    <Box pb="70px">
-      Landing
-
-      <div>
-        {results?.map(pokemon => {
-          return (
-            <PokemonCard
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.image}
-              owned={ownedData[pokemon.id] || 0}
-            />
-          )
-        })}
-      </div>
-    </Box>
+    <React.Fragment>
+      <TopBar />
+      <Box padding="16px 16px 78px 16px">
+        <div>
+          {results?.map(pokemon => {
+            return (
+              <PokemonCard
+                id={pokemon.id}
+                name={pokemon.name}
+                image={pokemon.image}
+                owned={ownedData[pokemon.id] || 0}
+                key={pokemon.id}
+              />
+            )
+          })}
+        </div>
+      </Box>
+    </React.Fragment>
   );
 }
 

@@ -12,6 +12,7 @@ import { capitalizeFirstLetter } from '../../utils';
 import { Table } from '@chakra-ui/table';
 import { Button } from '@chakra-ui/button';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
+import TopBar from '../../components/TopBar';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -93,7 +94,7 @@ const Detail = () => {
 
   return (
     <div className="detail">
-      Detail
+      <TopBar />
 
       <h1>{capitalizedName}</h1>
       <div css={summaryStyles}>

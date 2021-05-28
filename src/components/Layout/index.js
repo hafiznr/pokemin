@@ -27,26 +27,20 @@ const Layout = ({route, location}) => {
     }
   });
 
-  const layoutStyles = css({
+  const mainStyles = css({
     maxWidth: '480px',
     boxSizing: 'border-box',
     width: '100%',
     margin: '0px auto',
     background: '#fff',
-    minHeight: '100vh',
-    padding: '42px 16px 0 16px',
+    minHeight: '100vh'
   });
 
   return (
-    <>
-      <div css={layoutStyles}>
-        <main>
-          {renderRoutes(route.routes)}
-          <MenuBar pathname={pathname} />
-        </main>
-      </div>
-      
-    </>
+    <main css={mainStyles}>
+      {renderRoutes(route.routes)}
+      <MenuBar pathname={pathname} />
+    </main>
   )
 };
 
