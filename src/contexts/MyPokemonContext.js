@@ -3,9 +3,6 @@ import React, { createContext, useState } from 'react';
 export const MyPokemonContext = createContext();
 
 export const MyPokemonContextProvider = ({ children, initialData }) => {
-  // const initialData = sessionStorage.getItem('mypokemon');
-  console.log({initialData})
-
   const [myPokemonData, setMyPokemonData] = useState(JSON.parse(initialData) || []);
 
   const addPokemon = (data) => {
@@ -13,12 +10,21 @@ export const MyPokemonContextProvider = ({ children, initialData }) => {
 
     setMyPokemonData(newPokemonData);
 
-    sessionStorage.setItem('mypokemon', JSON.stringify(newPokemonData));
+    localStorage.setItem('mypokemon', JSON.stringify(newPokemonData));
+  }
+
+  const removePokemon = (nickname) => {
+    const newPokemonData = myPokemonData
+      .filter(pokemon => pokemon.nickname !== nickname);
+
+    setMyPokemonData(newPokemonData);
+
+    localStorage.setItem('mypokemon', JSON.stringify(newPokemonData));
   }
 
   return (
     <MyPokemonContext.Provider 
-      value={{ ...myPokemonData, addPokemon }}
+      value={{ myPokemonData, addPokemon, removePokemon }}
     >
       {children}
     </MyPokemonContext.Provider>

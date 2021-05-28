@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { 
   Button, 
   Modal, 
@@ -13,7 +13,6 @@ import {
   ModalOverlay
 } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
-import { MyPokemonContext } from "../../../../contexts/MyPokemonContext";
 
 const SuccessModal = ({
   isOpen,
@@ -22,23 +21,27 @@ const SuccessModal = ({
   onClose,
   onSubmit
 }) => {
-  const { addPokemon } = useContext(MyPokemonContext);
-
   const [nickname, setNickname] = useState('');
   const [isError, setIsError] = useState(false);
 
   const handleChange = (e) => {
     setNickname(e.target.value);
+
+    if (isError){
+      setIsError(false);
+    }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setNickname('');
-    
-    addPokemon({name: pokemon, nickname});
+    if (!nickname) {
+      return setIsError(true);
+    }
 
-    onClose();
+    setNickname('');
+    setIsError(false);
+    onSubmit(nickname);
   }
 
   const center = css({
@@ -76,6 +79,8 @@ const SuccessModal = ({
                   type="text"
                   name="nickname"
                   value={nickname}
+                  isInvalid={isError}
+                  focusBorderColor={isError ? 'red.500' : 'blue.500'}
                   onChange={handleChange}  
                 />
               </FormControl>

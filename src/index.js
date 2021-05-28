@@ -16,7 +16,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache() 
 });
 
-const myPokemonData = sessionStorage.getItem('mypokemon');
+const myPokemonData = localStorage.getItem('mypokemon');
 
 ReactDOM.hydrate(
   <ApolloProvider client={client}>

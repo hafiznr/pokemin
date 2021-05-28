@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 import { useLazyQuery, useQuery } from '@apollo/client';
 
@@ -11,10 +11,13 @@ import FailedModal from './components/FailedModal';
 import { capitalizeFirstLetter } from '../../utils';
 import { Table } from '@chakra-ui/table';
 import { Button } from '@chakra-ui/button';
+import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
 const CATCH_PROBABILITY = 0.5;
 
 const Detail = () => {
+  const { addPokemon } = useContext(MyPokemonContext);
+
   const [showModal, setShowModal] = useState('');
 
   const { pokemonId } = useParams();
@@ -68,17 +71,24 @@ const Detail = () => {
   });
 
   const handleClickCatch = () => {
-    console.log('catch!');
-
     const isSuccess = Math.random() <= CATCH_PROBABILITY;
-
-    console.log({isSuccess})
 
     if(isSuccess) {
       setShowModal('success');
     } else {
       setShowModal('failed');
     }
+  }
+
+  const handleAddPokemon = (nickname) => {
+    addPokemon({
+      id,
+      name,
+      image: sprites.front_default,
+      nickname
+    });
+
+    setShowModal('');
   }
 
   return (
@@ -137,6 +147,7 @@ const Detail = () => {
         pokemon={capitalizedName}
         image={sprites?.front_default}
         onClose={() => setShowModal('')}
+        onSubmit={handleAddPokemon}
       />
 
       <FailedModal
