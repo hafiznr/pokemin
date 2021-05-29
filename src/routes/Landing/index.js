@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useQuery, gql } from '@apollo/client';
 import PokemonCard from '../../components/PokemonCard';
@@ -29,6 +29,9 @@ const GET_POKEMONS = gql`
 
 const Landing = () => {
   const { myPokemonData } = useContext(MyPokemonContext);
+  
+  const [offset, setOffset] = useState(0);
+  const [pokemonList, setPokemonList] = useState([]);
 
   const ownedData = {};
   myPokemonData.forEach(item => {
@@ -39,28 +42,40 @@ const Landing = () => {
     }
   });
 
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
+  const handleSetPokemonList = (data) => {
+    const { pokemons } = data || {};
+    const { results } = pokemons || {};
+
+    setPokemonList([...pokemonList, ...results]);
+  }
+
+  const { loading, error } = useQuery(GET_POKEMONS, {
     variables: {
       limit: 10,
-      offset: 0
-    }
+      offset
+    },
+    onCompleted: handleSetPokemonList
   });
 
-  const { pokemons } = data || {};
-  const { results } = pokemons || {};
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop 
+        === document.documentElement.offsetHeight) {
+        setOffset(offset + 10);
+      }
+    }
 
-  const listStyle = css({
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '8px'
-  })
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [offset]);
 
   return (
     <React.Fragment>
       <TopBar />
-      <Box padding="16px 16px 78px 16px">
+      <Box padding="8px 16px 90px 16px">
         <div>
-          {results?.map(pokemon => {
+          {pokemonList.map(pokemon => {
             return (
               <PokemonCard
                 id={pokemon.id}

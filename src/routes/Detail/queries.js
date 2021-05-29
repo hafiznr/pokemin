@@ -81,13 +81,3 @@ export const GET_POKEMON = gql`
     }
   }
 `;
-
-export const GET_EVOLUTION = gql`
-  query evolutionChain($id: String!) {
-    evolutionChain(id: $id) {
-      message
-      status
-      response
-    }
-  }
-`;
