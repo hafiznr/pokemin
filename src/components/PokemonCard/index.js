@@ -60,12 +60,17 @@ const PokemonCard = ({
           css={imgStyles}
         />
         <Box>
-          <Badge borderRadius="full" colorScheme="blackAlpha">
+          <Badge 
+            fontSize=""
+            borderRadius="full" 
+            colorScheme="blackAlpha"
+          >
             #{parsedId}
           </Badge>
-          <Box 
+          <Box
+            margin="2px 0"
             fontWeight="semibold" 
-            fontSize="lg" 
+            fontSize="2xl"
             textTransform="capitalize"
           >
             {nickname || name}
@@ -74,15 +79,17 @@ const PokemonCard = ({
             <Button 
               colorScheme="red" 
               mt="4px" 
-              size="sm"
+              size="md"
               position="absolute"
               right="8px"
+              bottom="8px"
               onClick={handleClickRelease}
             >
               Release
             </Button>
           ) : (
             <Badge 
+              fontSize="md"
               borderRadius="full" 
               colorScheme={owned ? "telegram" : "yellow"}
             >

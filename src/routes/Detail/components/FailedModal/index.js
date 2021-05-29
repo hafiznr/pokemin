@@ -1,7 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Button } from "@chakra-ui/button";
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay } from "@chakra-ui/modal";
+import { 
+  Button, 
+  Modal, 
+  ModalBody, 
+  ModalContent, 
+  ModalHeader, 
+  ModalOverlay 
+} from "@chakra-ui/react";
 import { jsx, css } from "@emotion/react";
 
 const FailedModal = ({

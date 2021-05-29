@@ -1,14 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { useEffect, useState } from 'react';
-import { css, jsx } from '@emotion/react';
+import { useEffect, useState, useContext } from 'react';
+import { jsx } from '@emotion/react';
 import { useQuery, gql } from '@apollo/client';
+import { Skeleton, Box, Stack } from '@chakra-ui/react';
+
 import PokemonCard from '../../components/PokemonCard';
-import { Box, Stack } from '@chakra-ui/layout';
-import { useContext } from 'react';
+
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
-import TopBar from '../../components/TopBar';
-import { Skeleton } from '@chakra-ui/skeleton';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -31,6 +30,7 @@ const GET_POKEMONS = gql`
 const Landing = () => {
   const { myPokemonData } = useContext(MyPokemonContext);
   
+  const [maxPokemon, setMaxPokemon] = useState(0);
   const [offset, setOffset] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
 
@@ -45,8 +45,13 @@ const Landing = () => {
 
   const handleSetPokemonList = (data) => {
     const { pokemons } = data || {};
-    const { results } = pokemons || {};
+    const { results, count } = pokemons || {};
 
+
+    if (!maxPokemon) {
+      setMaxPokemon(count);
+    }
+    
     setPokemonList([...pokemonList, ...results]);
   }
 
@@ -60,7 +65,8 @@ const Landing = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop 
+      if (pokemonList.length < maxPokemon 
+        && window.innerHeight + document.documentElement.scrollTop 
         === document.documentElement.offsetHeight) {
         setOffset(offset + 10);
       }
@@ -69,35 +75,36 @@ const Landing = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [offset]);
+  }, [offset, pokemonList, maxPokemon]);
 
   return (
-    <React.Fragment>
-      <TopBar />
-      <Box padding="8px 16px 90px 16px">
-        <div>
-          {pokemonList.map(pokemon => {
-            return (
-              <PokemonCard
-                id={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.image}
-                owned={ownedData[pokemon.id] || 0}
-                key={pokemon.id}
-              />
-            )
-          })}
+    <Box padding="8px 16px 90px 16px">
+      {pokemonList.map(pokemon => {
+        return (
+          <PokemonCard
+            id={pokemon.id}
+            name={pokemon.name}
+            image={pokemon.image}
+            owned={ownedData[pokemon.id] || 0}
+            key={pokemon.id}
+          />
+        )
+      })}
 
-          {loading && (
-            <Stack>
-              {[...new Array(8)].map((v,i) => (
-                <Skeleton height="112px" key={i}/>
-              ))}
-            </Stack>
-          )}
-        </div>
-      </Box>
-    </React.Fragment>
+      {error && (
+        <Box mb="8px" fontSize="xl" fontWeight="bold">
+          Something went wrong. Please try again later
+        </Box>
+      )}
+
+      {(loading || error) && (
+        <Stack>
+          {[...new Array(8)].map((v,i) => (
+            <Skeleton height="112px" key={i}/>
+          ))}
+        </Stack>
+      )}
+    </Box>
   );
 }
 

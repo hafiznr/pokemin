@@ -11,10 +11,10 @@ import {
   FormLabel, 
   Input, 
   ModalOverlay,
-  FormErrorMessage,
   Text
 } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
+
 import { MyPokemonContext } from "../../../../contexts/MyPokemonContext";
 
 const SuccessModal = ({

@@ -2,22 +2,35 @@
 /** @jsx jsx */
 import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
-import { useLazyQuery, useQuery } from '@apollo/client';
-
-import { GET_POKEMON } from './queries';
+import { useQuery } from '@apollo/client';
 import { jsx, css } from '@emotion/react';
+import { 
+  Table, 
+  Tbody, 
+  Td, 
+  Tr,
+  Button,
+  ListItem,
+  OrderedList,
+  Tag,
+  Image,
+  Skeleton,
+  Box
+} from '@chakra-ui/react';
+
+// queries
+import { GET_POKEMON } from './queries';
+
+// components
 import SuccessModal from './components/SuccessModal';
 import FailedModal from './components/FailedModal';
-import { capitalizeFirstLetter, getPokemonNumber } from '../../utils';
-import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table';
-import { Button } from '@chakra-ui/button';
-import { MyPokemonContext } from '../../contexts/MyPokemonContext';
-import TopBar from '../../components/TopBar';
 import PokemonType from '../../components/PokemonType';
-import { Box, ListItem, OrderedList, Text } from '@chakra-ui/layout';
-import { Tag } from '@chakra-ui/tag';
-import { Image } from '@chakra-ui/image';
-import { Skeleton, SkeletonText } from '@chakra-ui/skeleton';
+
+// utils
+import { capitalizeFirstLetter, getPokemonNumber } from '../../utils';
+
+// context
+import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -28,11 +41,7 @@ const Detail = () => {
 
   const { pokemonId } = useParams();
 
-  const { 
-    loading, 
-    error, 
-    data: pokemonData 
-  } = useQuery(GET_POKEMON, {
+  const { loading, error, data: pokemonData } = useQuery(GET_POKEMON, {
     variables: {
       name: pokemonId
     }
@@ -41,8 +50,7 @@ const Detail = () => {
   const { pokemon } = pokemonData || {};
   const { 
     abilities, 
-    base_experience, 
-    game_indices, 
+    base_experience,
     height,
     id,  
     moves,
@@ -54,10 +62,6 @@ const Detail = () => {
 
   const capitalizedName = capitalizeFirstLetter(name);
 
-  const nameStyles = css({
-    textTransform: 'capitalize'
-  });
-
   const summaryStyles = css({
     display: 'grid',
     gridTemplateColumns: '96px auto',
@@ -67,12 +71,6 @@ const Detail = () => {
   const imagesStyles = css({
     display: 'flex',
     flexDirection: 'column'
-  });
-
-  const btnWrapperStyles = css({
-    padding: '16px',
-    // zIndex: 10,
-    boxShadow: '0px 40px 50px 4px #000000'
   });
 
   const handleClickCatch = () => {
@@ -132,34 +130,46 @@ const Detail = () => {
   ]
 
   const imgFallback = (
-    <Skeleton 
-      height="96px" 
-      width="96px" 
-      mb="8px" 
-      borderRadius="8px" 
-    />
+    <>
+      <Skeleton 
+        height="96px" 
+        width="96px" 
+        mb="8px" 
+        borderRadius="8px" 
+      />
+      <Skeleton 
+        height="96px" 
+        width="96px" 
+        mb="8px" 
+        borderRadius="8px" 
+      />
+    </>
   );
 
   return (
-    <React.Fragment>
-      <TopBar />
-      
-      <Box className="detail" padding="8px 16px 78px 16px">
-        <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb="8px">
-          {loading ? (
-            <Skeleton height="27px" mb="8px"/>
-          ) : <>{capitalizedName}</>}
+    <Box className="detail" padding="8px 16px 78px 16px">
+      {error && (
+        <Box mb="8px" fontSize="xl" fontWeight="bold">
+          Something went wrong. Please try again later
         </Box>
-        <div css={summaryStyles}>
-          <div css={imagesStyles}>
-            <Image 
-              src={sprites?.front_default} 
-              alt={pokemonId}
-              fallback={imgFallback}
-              mb="8px"
-              border="1px solid #CBD5E0"
-              borderRadius="8px"
-            />
+      )}
+
+      <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb="8px">
+        {loading ? (
+          <Skeleton height="27px" mb="8px"/>
+        ) : <>{capitalizedName}</>}
+      </Box>
+      <div css={summaryStyles}>
+        <div css={imagesStyles}>
+          <Image 
+            src={sprites?.front_default} 
+            alt={pokemonId}
+            fallback={imgFallback}
+            mb="8px"
+            border="1px solid #CBD5E0"
+            borderRadius="8px"
+          />
+          {sprites?.back_default && (
             <Image 
               src={sprites?.back_default} 
               alt={pokemonId} 
@@ -167,85 +177,84 @@ const Detail = () => {
               border="1px solid #CBD5E0"
               borderRadius="8px"
             />
-          </div>
-          <Table>
-            <Tbody>
-              {tableContent.map((content, i) => (
-                <Tr key={i}>
-                  <Td maxWidth="84px">{content.label}</Td>
-                  <Td>
-                    {loading ? (
-                      <Skeleton width="60px" height="14px"/>
-                    ) : (<>{content.value}</>)}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </div>
-        <Box fontSize="2xl" mb="4px">Moves</Box>
-        {loading ? (
-          <Skeleton height="100px"/>
-        ) : (
-          <Box 
-            display="flex" 
-            flexWrap="wrap"
-            overflow="scroll"
-            height="100px"
-            bgColor="gray.100"
-            borderRadius="8px"
-            borderColor="gray.100"
-            borderWidth="4px"
-          >
-            {moves?.map((item, i) => (
-              <Tag 
-                key={i}
-                size="lg"
-                margin="0 4px 4px 0"
-                bgColor="white"
-              >
-                {item.move.name}
-              </Tag>
-            ))}
-          </Box>
-        )}
-
-        <Box
-          width="100%"
-          textAlign="center"
-          margin="16px 0"
-        >
-          {loading ? (
-            <Skeleton height="36px" />
-          ) : (
-            <Button 
-              size="lg"
-              colorScheme="twitter"
-              width="100%"
-              onClick={handleClickCatch}
-            >
-              Catch!
-            </Button>
           )}
+        </div>
+        <Table>
+          <Tbody>
+            {tableContent.map((content, i) => (
+              <Tr key={i}>
+                <Td maxWidth="84px">{content.label}</Td>
+                <Td>
+                  {loading ? (
+                    <Skeleton width="60px" height="14px"/>
+                  ) : (<>{content.value}</>)}</Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </div>
+      <Box fontSize="2xl" mb="4px">Moves</Box>
+      {loading ? (
+        <Skeleton height="100px"/>
+      ) : (
+        <Box 
+          display="flex" 
+          flexWrap="wrap"
+          overflow="scroll"
+          height="100px"
+          bgColor="gray.100"
+          borderRadius="8px"
+          borderColor="gray.100"
+          borderWidth="4px"
+        >
+          {moves?.map((item, i) => (
+            <Tag 
+              key={i}
+              size="lg"
+              margin="0 4px 4px 0"
+              bgColor="white"
+            >
+              {item.move.name}
+            </Tag>
+          ))}
         </Box>
+      )}
 
-        <SuccessModal
-          isOpen={showModal === 'success'}
-          pokemon={capitalizedName}
-          image={sprites?.front_default}
-          onClose={() => setShowModal('')}
-          onSubmit={handleAddPokemon}
-        />
-
-        <FailedModal
-          isOpen={showModal === 'failed'}
-          pokemon={capitalizedName}
-          image={sprites?.back_default}
-          onClose={() => setShowModal('')}
-          onRetry={handleClickCatch}
-        />
+      <Box
+        width="100%"
+        textAlign="center"
+        margin="16px 0"
+      >
+        {loading ? (
+          <Skeleton height="36px" />
+        ) : (
+          <Button 
+            size="lg"
+            colorScheme="twitter"
+            width="100%"
+            onClick={handleClickCatch}
+          >
+            Catch!
+          </Button>
+        )}
       </Box>
-    </React.Fragment>
 
+      <SuccessModal
+        isOpen={showModal === 'success'}
+        pokemon={capitalizedName}
+        image={sprites?.front_default}
+        onClose={() => setShowModal('')}
+        onSubmit={handleAddPokemon}
+      />
+
+      <FailedModal
+        isOpen={showModal === 'failed'}
+        pokemon={capitalizedName}
+        image={sprites?.back_default}
+        onClose={() => setShowModal('')}
+        onRetry={handleClickCatch}
+      />
+    </Box>
   );
 }
 

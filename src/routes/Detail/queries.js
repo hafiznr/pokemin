@@ -12,40 +12,15 @@ export const GET_POKEMON = gql`
         slot
       }
       base_experience
-      forms {
-        url
-        name
-      }
-      game_indices {
-        game_index
-        version {
-          url
-          name
-        }
-      }
       height
       id
-      is_default
-      location_area_encounters
       moves {
         move {
           url
           name
         }
-        version_group_details {
-          level_learned_at
-          move_learn_method {
-            url
-            name
-          }
-          version_group {
-            url
-            name
-          }
-        }
       }
       name
-      order
       species {
         url
         name
@@ -59,14 +34,6 @@ export const GET_POKEMON = gql`
         front_female
         front_shiny
         front_shiny_female
-      }
-      stats {
-        base_stat
-        effort
-        stat {
-          url
-          name
-        }
       }
       types {
         slot
