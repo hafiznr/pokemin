@@ -64,7 +64,7 @@ const MenuBar = ({pathname}) => {
           <Box>
             <PokeballIcon color={isMyPokemon ? 'white' : '#FEB2B2'}/>
           </Box>
-          My Pokemon
+          My Pokémon
         </Box>
       </Link>
     </Box>

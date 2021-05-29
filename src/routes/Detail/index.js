@@ -119,8 +119,8 @@ const Detail = () => {
       label: 'Abilities',
       value: (
         <OrderedList textTransform="capitalize">
-          {abilities?.map(item => (
-            <ListItem>{item.ability.name}</ListItem>
+          {abilities?.map((item, i) => (
+            <ListItem key={i}>{item.ability.name}</ListItem>
           ))}
         </OrderedList>
       )
@@ -170,8 +170,8 @@ const Detail = () => {
           </div>
           <Table>
             <Tbody>
-              {tableContent.map(content => (
-                <Tr>
+              {tableContent.map((content, i) => (
+                <Tr key={i}>
                   <Td maxWidth="84px">{content.label}</Td>
                   <Td>
                     {loading ? (
@@ -196,8 +196,15 @@ const Detail = () => {
             borderColor="gray.100"
             borderWidth="4px"
           >
-            {moves?.map(item => (
-              <Tag size="lg" mr="4px" mb="4px" bgColor="white" >{item.move.name}</Tag>
+            {moves?.map((item, i) => (
+              <Tag 
+                key={i}
+                size="lg"
+                margin="0 4px 4px 0"
+                bgColor="white"
+              >
+                {item.move.name}
+              </Tag>
             ))}
           </Box>
         )}

@@ -10,7 +10,7 @@ const TopBar = () => {
 
   const menus = {
     pokemon: 'Detail',
-    mypokemon: 'My Pokemon'
+    mypokemon: 'My Pokémon'
   };
 
   return (
