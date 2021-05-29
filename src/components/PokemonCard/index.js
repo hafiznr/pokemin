@@ -1,13 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { Link, useHistory } from "react-router-dom";
-import { Badge, Box, Image, Button } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+import { Badge, Box, Button } from "@chakra-ui/react";
 import { getPokemonNumber } from '../../utils';
 
 const PokemonCard = ({
   id, 
   name, 
+  nickname, 
   image, 
   isMyPokemon,
   owned,
@@ -15,15 +16,10 @@ const PokemonCard = ({
 }) => {
   const history = useHistory();
 
-  const linkStyle = css({
-    textDecoration: 'none',
-    color: 'unset'
-  });
-
-  const titleStyle = css({
-    textTransform: 'capitalize',
-    fontWeight: 'bold'
-  });
+  const imgStyles = css({
+    backgroundColor: '#fff',
+    borderRadius: '8px'
+  })
 
   const parsedId = getPokemonNumber(id);
 
@@ -32,7 +28,8 @@ const PokemonCard = ({
     
     onRelease({
       id, 
-      name, 
+      name,
+      nickname, 
       image
     });
   }
@@ -51,16 +48,16 @@ const PokemonCard = ({
         gridGap={4}
         gridTemplateColumns="96px 1fr"
         padding="8px"
+        position="relative"
         onClick={handleClickCard}
       >
-        <Image 
+        <img 
           src={image} 
-          alt={name} 
+          alt={nickname || name} 
           loading="lazy" 
           width="96px" 
           height="96px"
-          bgColor="white"
-          borderRadius="8px"
+          css={imgStyles}
         />
         <Box>
           <Badge borderRadius="full" colorScheme="blackAlpha">
@@ -71,13 +68,15 @@ const PokemonCard = ({
             fontSize="lg" 
             textTransform="capitalize"
           >
-            {name}
+            {nickname || name}
           </Box>
           {isMyPokemon ? (
             <Button 
               colorScheme="red" 
               mt="4px" 
               size="sm"
+              position="absolute"
+              right="8px"
               onClick={handleClickRelease}
             >
               Release

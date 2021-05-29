@@ -18,7 +18,7 @@ const MyPokemon = () => {
   }
 
   const handleSubmitRelease = () => {
-    removePokemon(released.name);
+    removePokemon(released.nickname);
 
     setReleased(null);
   }
@@ -32,7 +32,8 @@ const MyPokemon = () => {
             {myPokemonData.map(pokemon => (
               <PokemonCard
                 id={pokemon.id}
-                name={pokemon.nickname}
+                nickname={pokemon.nickname}
+                name={pokemon.name}
                 image={pokemon.image}
                 isMyPokemon
                 onRelease={handleClickRelease}
@@ -42,7 +43,7 @@ const MyPokemon = () => {
 
             <ReleaseModal
               isOpen={!!released}
-              pokemon={released?.name}
+              pokemon={released?.nickname}
               image={released?.image}
               onClose={() => setReleased(null)}
               onSubmit={handleSubmitRelease}

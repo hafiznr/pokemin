@@ -40,8 +40,8 @@ const SuccessModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!nickname) {
-      return setErrorMessage('Please give the nickname first');
+    if (!nickname || nickname.length > 10) {
+      return setErrorMessage('Please give a nickname with max 10 characters');
     }
 
     const hasNickname = myPokemonData.some((pokemon) => 
