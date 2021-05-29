@@ -36,6 +36,7 @@ const MyPokemon = () => {
                 image={pokemon.image}
                 isMyPokemon
                 onRelease={handleClickRelease}
+                key={pokemon.nickname}
               />
             ))}
 

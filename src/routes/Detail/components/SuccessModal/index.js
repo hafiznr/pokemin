@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { 
   Button, 
   Modal, 
@@ -10,9 +10,12 @@ import {
   FormControl, 
   FormLabel, 
   Input, 
-  ModalOverlay
+  ModalOverlay,
+  FormErrorMessage,
+  Text
 } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
+import { MyPokemonContext } from "../../../../contexts/MyPokemonContext";
 
 const SuccessModal = ({
   isOpen,
@@ -21,14 +24,16 @@ const SuccessModal = ({
   onClose,
   onSubmit
 }) => {
+  const { myPokemonData } = useContext(MyPokemonContext);
+
   const [nickname, setNickname] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setNickname(e.target.value);
 
-    if (isError){
-      setIsError(false);
+    if (errorMessage){
+      setErrorMessage('');
     }
   }
 
@@ -36,11 +41,18 @@ const SuccessModal = ({
     e.preventDefault();
 
     if (!nickname) {
-      return setIsError(true);
+      return setErrorMessage('Please give the nickname first');
+    }
+
+    const hasNickname = myPokemonData.some((pokemon) => 
+      pokemon.nickname.toLowerCase() === nickname.toLowerCase());
+    
+    if (hasNickname) {
+      return setErrorMessage('This nickname is already used');
     }
 
     setNickname('');
-    setIsError(false);
+    setErrorMessage(false);
     onSubmit(nickname);
   }
 
@@ -79,10 +91,21 @@ const SuccessModal = ({
                   type="text"
                   name="nickname"
                   value={nickname}
-                  isInvalid={isError}
-                  focusBorderColor={isError ? 'red.500' : 'blue.500'}
+                  isInvalid={!!errorMessage}
+                  focusBorderColor={errorMessage ? 'red.500' : 'blue.500'}
+                  autoComplete="off"
                   onChange={handleChange}  
                 />
+                {errorMessage && (
+                  <Text 
+                    fontSize="sm" 
+                    textAlign="left" 
+                    color="red.400"
+                    mt="4px"
+                  >
+                    {errorMessage}
+                  </Text>
+                )}
               </FormControl>
               <Button 
                 type="submit" 

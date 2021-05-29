@@ -31,7 +31,7 @@ const TopBar = () => {
           <ChevronLeftIcon />
         </Box>
       )}
-      <Box lineHeight="24px">
+      <Box lineHeight="24px" fontSize="14px">
         {menus[pathnameArr[1]] || 'Pokémin'}
       </Box>
     </Box>

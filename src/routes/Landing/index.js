@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { useQuery, gql } from '@apollo/client';
 import PokemonCard from '../../components/PokemonCard';
-import { Box } from '@chakra-ui/layout';
+import { Box, Stack } from '@chakra-ui/layout';
 import { useContext } from 'react';
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 import TopBar from '../../components/TopBar';
+import { Skeleton } from '@chakra-ui/skeleton';
 
 const GET_POKEMONS = gql`
   query pokemons($limit: Int, $offset: Int) {
@@ -86,6 +87,14 @@ const Landing = () => {
               />
             )
           })}
+
+          {loading && (
+            <Stack>
+              {[...new Array(8)].map((v,i) => (
+                <Skeleton height="112px" key={i}/>
+              ))}
+            </Stack>
+          )}
         </div>
       </Box>
     </React.Fragment>

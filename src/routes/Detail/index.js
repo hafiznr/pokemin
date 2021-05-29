@@ -16,6 +16,8 @@ import TopBar from '../../components/TopBar';
 import PokemonType from '../../components/PokemonType';
 import { Box, ListItem, OrderedList, Text } from '@chakra-ui/layout';
 import { Tag } from '@chakra-ui/tag';
+import { Image } from '@chakra-ui/image';
+import { Skeleton, SkeletonText } from '@chakra-ui/skeleton';
 
 const CATCH_PROBABILITY = 0.5;
 
@@ -27,8 +29,8 @@ const Detail = () => {
   const { pokemonId } = useParams();
 
   const { 
-    loading: loadingGetPokemon, 
-    error: errorGetPokemon, 
+    loading, 
+    error, 
     data: pokemonData 
   } = useQuery(GET_POKEMON, {
     variables: {
@@ -64,8 +66,7 @@ const Detail = () => {
 
   const imagesStyles = css({
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center'
+    flexDirection: 'column'
   });
 
   const btnWrapperStyles = css({
@@ -130,55 +131,94 @@ const Detail = () => {
     }
   ]
 
+  const imgFallback = (
+    <Skeleton 
+      height="96px" 
+      width="96px" 
+      mb="8px" 
+      borderRadius="8px" 
+    />
+  );
+
   return (
     <React.Fragment>
       <TopBar />
-
+      
       <Box className="detail" padding="8px 16px 78px 16px">
-        <Box textAlign="center" fontSize="2xl" fontWeight="bold">
-          {capitalizedName}
+        <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb="8px">
+          {loading ? (
+            <Skeleton height="27px" mb="8px"/>
+          ) : <>{capitalizedName}</>}
         </Box>
         <div css={summaryStyles}>
           <div css={imagesStyles}>
-            <img src={sprites?.front_default} alt={pokemonId} />
-            <img src={sprites?.back_default} alt={pokemonId} />
+            <Image 
+              src={sprites?.front_default} 
+              alt={pokemonId}
+              fallback={imgFallback}
+              mb="8px"
+              border="1px solid #CBD5E0"
+              borderRadius="8px"
+            />
+            <Image 
+              src={sprites?.back_default} 
+              alt={pokemonId} 
+              fallback={imgFallback}
+              border="1px solid #CBD5E0"
+              borderRadius="8px"
+            />
           </div>
           <Table>
             <Tbody>
               {tableContent.map(content => (
                 <Tr>
                   <Td maxWidth="84px">{content.label}</Td>
-                  <Td>{content.value}</Td>
+                  <Td>
+                    {loading ? (
+                      <Skeleton width="60px" height="14px"/>
+                    ) : (<>{content.value}</>)}</Td>
                 </Tr>
               ))}
             </Tbody>
           </Table>
         </div>
         <Box fontSize="2xl" mb="4px">Moves</Box>
-        <Box 
-          display="flex" 
-          flexWrap="wrap"
-          overflow="scroll"
-          maxHeight="100px"
-        >
-          {moves?.map(item => (
-            <Tag size="lg" mr="4px" mb="4px">{item.move.name}</Tag>
-          ))}
-        </Box>
+        {loading ? (
+          <Skeleton height="100px"/>
+        ) : (
+          <Box 
+            display="flex" 
+            flexWrap="wrap"
+            overflow="scroll"
+            height="100px"
+            bgColor="gray.100"
+            borderRadius="8px"
+            borderColor="gray.100"
+            borderWidth="4px"
+          >
+            {moves?.map(item => (
+              <Tag size="lg" mr="4px" mb="4px" bgColor="white" >{item.move.name}</Tag>
+            ))}
+          </Box>
+        )}
 
         <Box
           width="100%"
           textAlign="center"
           margin="16px 0"
         >
-          <Button 
-            size="lg"
-            colorScheme="twitter"
-            width="100%"
-            onClick={handleClickCatch}
-          >
-            Catch!
-          </Button>
+          {loading ? (
+            <Skeleton height="36px" />
+          ) : (
+            <Button 
+              size="lg"
+              colorScheme="twitter"
+              width="100%"
+              onClick={handleClickCatch}
+            >
+              Catch!
+            </Button>
+          )}
         </Box>
 
         <SuccessModal
