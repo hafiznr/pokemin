@@ -139,8 +139,7 @@ const Detail = () => {
       />
       <Skeleton 
         height="96px" 
-        width="96px" 
-        mb="8px" 
+        width="96px"
         borderRadius="8px" 
       />
     </>
@@ -168,6 +167,8 @@ const Detail = () => {
             mb="8px"
             border="1px solid #CBD5E0"
             borderRadius="8px"
+            htmlHeight="96px"
+            htmlWidth="96px"
           />
           {sprites?.back_default && (
             <Image 
@@ -176,6 +177,8 @@ const Detail = () => {
               fallback={imgFallback}
               border="1px solid #CBD5E0"
               borderRadius="8px"
+              htmlHeight="96px"
+              htmlWidth="96px"
             />
           )}
         </div>

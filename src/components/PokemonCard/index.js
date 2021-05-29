@@ -3,6 +3,7 @@
 import { css, jsx } from '@emotion/react';
 import { useHistory } from "react-router-dom";
 import { Badge, Box, Button } from "@chakra-ui/react";
+
 import { getPokemonNumber } from '../../utils';
 
 const PokemonCard = ({
