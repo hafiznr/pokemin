@@ -7,17 +7,13 @@ import { renderRoutes } from 'react-router-config';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import routes from './routes';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 import { MyPokemonContextProvider } from './contexts/MyPokemonContext';
 
 import './index.css';
-
-const client = new ApolloClient({
-  uri: 'https://graphql-pokeapi.vercel.app/api/graphql', 
-  cache: new InMemoryCache() 
-});
+import { client } from './client';
 
 const myPokemonData = localStorage.getItem('mypokemon');
 
@@ -33,6 +29,11 @@ ReactDOM.hydrate(
   </ApolloProvider>, 
   document.getElementById('root')
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.unregister();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

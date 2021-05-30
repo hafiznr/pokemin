@@ -63,7 +63,7 @@ const MenuBar = ({pathname}) => {
     >
       {menus.map(menu => {
         return (
-          <Link to={menu.url} css={linkStyle}>
+          <Link to={menu.url} css={linkStyle} key={menu.url}>
             <Box
               textColor={menu.active ? 'white' : 'red.200'}
               textDecor="none"
