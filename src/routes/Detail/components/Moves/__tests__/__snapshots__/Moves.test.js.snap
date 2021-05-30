@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Moves 1`] = `
+<div>
+  <div>
+    <div
+      class="css-bn3r0t"
+    >
+      Moves
+    </div>
+    <div
+      class="css-8ehw8a"
+      data-testid="moves-container"
+    />
+  </div>
+</div>
+`;

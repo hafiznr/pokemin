@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PokemonCard 1`] = `
+<div>
+  <div
+    class="css-gh77c9"
+    data-testid="pokemon-card"
+  >
+    <img
+      class="css-1yjt0aa-PokemonCard"
+      height="96px"
+      loading="lazy"
+      width="96px"
+    />
+    <div
+      class="css-0"
+    >
+      <span
+        class="chakra-badge css-uwa4md"
+      >
+        #
+      </span>
+      <div
+        class="css-1wjjfwl"
+      />
+      <span
+        class="chakra-badge css-1lyftqe"
+        data-testid="owned-badge"
+      >
+        Not owned
+      </span>
+    </div>
+  </div>
+</div>
+`;

@@ -2,14 +2,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { Suspense } from 'react';
-import { withRouter } from "react-router";
 import { renderRoutes } from "react-router-config"
 
 import MenuBar from '../MenuBar';
 import TopBar from '../TopBar';
 
-const Layout = ({route, location}) => {
-  const { pathname } = location;
+const Layout = ({route}) => {
 
   const mainStyles = css({
     maxWidth: '480px',
@@ -24,11 +22,11 @@ const Layout = ({route, location}) => {
     <main css={mainStyles}>
       <TopBar />
       <Suspense fallback={<div>Loading...</div>}>
-        {renderRoutes(route.routes)}
+        {renderRoutes(route?.routes)}
       </Suspense>
-      <MenuBar pathname={pathname} />
+      <MenuBar />
     </main>
   )
 };
 
-export default withRouter(Layout);
+export default Layout;

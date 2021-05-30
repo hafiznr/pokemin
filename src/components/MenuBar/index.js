@@ -3,16 +3,18 @@
 import { Box } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
 import HomeIcon from '../CustomIcon/HomeIcon';
 import PokeballIcon from '../CustomIcon/PokeballIcon';
 
-const MenuBar = ({pathname}) => {
+const MenuBar = () => {
   const { myPokemonData } = useContext(MyPokemonContext);
 
+  const location = useLocation();
+  const { pathname } = location;
   const isHome = pathname === '/';
   const isMyPokemon = pathname === '/mypokemon';
 
@@ -36,7 +38,7 @@ const MenuBar = ({pathname}) => {
       icon: <HomeIcon size="22" color={isHome ? 'white' : '#FEB2B2'}/>
     },
     {
-      label: `My Pokémon (${myPokemonData.length})`,
+      label: `My Pokémon (${myPokemonData?.length})`,
       url: '/mypokemon',
       active: isMyPokemon,
       customProps: {

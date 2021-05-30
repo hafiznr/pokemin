@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TopBar 1`] = `
+<div>
+  <div
+    class="css-1p24ppz"
+  >
+    <div
+      class="css-1y41ry6"
+      data-testid="back-button"
+    >
+      <svg
+        fill="none"
+        height="24"
+        style="display: inline-block;"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <path
+          d="M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+    <div
+      class="css-1qbkptb"
+    >
+      Pokémin
+    </div>
+  </div>
+</div>
+`;

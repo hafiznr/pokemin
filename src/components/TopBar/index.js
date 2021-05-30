@@ -28,6 +28,7 @@ const TopBar = () => {
           pos="absolute"
           top="8px"
           onClick={() => history.goBack()}
+          data-testid="back-button"
         >
           <ChevronLeftIcon />
         </Box>

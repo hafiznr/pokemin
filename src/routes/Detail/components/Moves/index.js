@@ -8,7 +8,10 @@ const Moves = ({
     <div>
       <Box fontSize="2xl" mb="4px">Moves</Box>
       {loading ? (
-        <Skeleton height="100px"/>
+        <Skeleton 
+          height="100px" 
+          data-testid="moves-skeleton"
+        />
       ) : (
         <Box 
           display="flex" 
@@ -19,6 +22,7 @@ const Moves = ({
           borderRadius="8px"
           borderColor="gray.100"
           borderWidth="4px"
+          data-testid="moves-container"
         >
           {moves?.map((item, i) => (
             <Tag 
