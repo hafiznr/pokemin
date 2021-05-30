@@ -80,7 +80,14 @@ const SuccessModal = ({
         </ModalHeader>
         <ModalBody>
           <div css={center}>
-            <img css={imgStyle} src={image} alt={pokemon} loading="lazy"/>
+            <img 
+              css={imgStyle} 
+              src={image} 
+              alt={pokemon} 
+              loading="lazy"
+              width="96px" 
+              height="96px" 
+            />
             
             <form onSubmit={handleSubmit}>
               <FormControl>

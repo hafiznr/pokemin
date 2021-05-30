@@ -42,7 +42,14 @@ const ReleaseModal = ({
         </ModalHeader>
         <ModalBody>
           <div css={center}>
-            <img css={imgStyle} src={image} alt={pokemon} loading="lazy"/>
+            <img 
+              css={imgStyle} 
+              src={image} 
+              alt={pokemon} 
+              loading="lazy"
+              width="96px" 
+              height="96px"
+            />
             
             <ButtonGroup spacing="4" width="100%">
               <Button onClick={onClose} width="100%">Cancel</Button>

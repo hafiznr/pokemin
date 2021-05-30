@@ -35,7 +35,14 @@ const FailedModal = ({
         </ModalHeader>
         <ModalBody>
           <div css={center}>
-            <img src={image} alt={pokemon} css={imgStyle} />
+            <img 
+              src={image} 
+              alt={pokemon} 
+              width="96px" 
+              height="96px" 
+              css={imgStyle}
+              loading="lazy" 
+            />
             <br />
             <Button
               colorScheme="twitter"
