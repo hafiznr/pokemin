@@ -4,6 +4,7 @@ import { Box } from '@chakra-ui/react';
 import { jsx, css } from '@emotion/react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
 import HomeIcon from '../CustomIcon/HomeIcon';
@@ -24,6 +25,27 @@ const MenuBar = ({pathname}) => {
     }
   });
 
+  const menus = [
+    {
+      label: 'Home',
+      url: '/',
+      active: isHome,
+      customProps: {
+        borderRight: "0.5px solid white"
+      },
+      icon: <HomeIcon size="22" color={isHome ? 'white' : '#FEB2B2'}/>
+    },
+    {
+      label: `My Pokémon (${myPokemonData.length})`,
+      url: '/mypokemon',
+      active: isMyPokemon,
+      customProps: {
+        borderLeft: "0.5px solid white"
+      },
+      icon: <PokeballIcon color={isMyPokemon ? 'white' : '#FEB2B2'}/>
+    }
+  ]
+
   return (
     <Box 
       d="grid" 
@@ -39,38 +61,24 @@ const MenuBar = ({pathname}) => {
       width="100%"
       boxShadow="2px 2px 23px 7px rgb(0 0 0 / 50%)"
     >
-      <Link to="/" css={linkStyle}>
-        <Box
-          textColor={isHome ? 'white' : 'red.200'}
-          textDecor="none"
-          bg="red.500"
-          height="100%"
-          p="12px"
-          fontWeight="bold"
-          borderRight="0.5px solid white"
-        >
-          <Box>
-            <HomeIcon size="22" color={isHome ? 'white' : '#FEB2B2'}/>
-          </Box>
-          Home
-        </Box>
-      </Link>
-      <Link to="/mypokemon" css={linkStyle}>
-        <Box
-          textColor={isMyPokemon ? 'white' : 'red.200'}
-          textDecor="none"
-          bg="red.500"
-          height="100%"
-          p="12px"
-          fontWeight="bold"
-          borderLeft="0.5px solid white"
-        >
-          <Box>
-            <PokeballIcon color={isMyPokemon ? 'white' : '#FEB2B2'}/>
-          </Box>
-          My Pokémon ({myPokemonData.length})
-        </Box>
-      </Link>
+      {menus.map(menu => {
+        return (
+          <Link to={menu.url} css={linkStyle}>
+            <Box
+              textColor={menu.active ? 'white' : 'red.200'}
+              textDecor="none"
+              bg="red.500"
+              height="100%"
+              p="12px"
+              fontWeight="bold"
+              {...menu.customProps}
+            >
+              <div>{menu.icon}</div>
+              {menu.label}
+            </Box>
+          </Link>
+        )
+      })}
     </Box>
   );
 }

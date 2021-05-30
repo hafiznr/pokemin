@@ -1,5 +1,6 @@
-import { Box } from "@chakra-ui/layout"
+import { Box } from "@chakra-ui/react"
 import { useHistory, useLocation } from "react-router";
+
 import ChevronLeftIcon from "../CustomIcon/ChevronLeftIcon";
 
 const TopBar = () => {

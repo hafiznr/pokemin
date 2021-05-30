@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Box, Text } from '@chakra-ui/layout';
+import { Box, Text } from '@chakra-ui/react';
 
 // assets
 import PokemonCard from '../../components/PokemonCard';

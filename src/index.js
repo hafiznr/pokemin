@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/client/react';
 import { ApolloClient, InMemoryCache } from '@apollo/client/core';
-import './index.css';
-// import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import routes from './routes';
 import { ChakraProvider } from '@chakra-ui/react';
+
+import routes from './routes';
+
+import reportWebVitals from './reportWebVitals';
+
 import { MyPokemonContextProvider } from './contexts/MyPokemonContext';
+
+import './index.css';
 
 const client = new ApolloClient({
   uri: 'https://graphql-pokeapi.vercel.app/api/graphql', 

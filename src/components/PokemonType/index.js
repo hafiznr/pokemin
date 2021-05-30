@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/react";
 
 const CUSTOM_BG = {
   normal: '#aa9',
