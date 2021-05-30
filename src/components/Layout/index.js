@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import { Suspense } from 'react';
 import { withRouter } from "react-router";
 import { renderRoutes } from "react-router-config"
 
@@ -22,7 +23,9 @@ const Layout = ({route, location}) => {
   return (
     <main css={mainStyles}>
       <TopBar />
-      {renderRoutes(route.routes)}
+      <Suspense fallback={<div>Loading...</div>}>
+        {renderRoutes(route.routes)}
+      </Suspense>
       <MenuBar pathname={pathname} />
     </main>
   )

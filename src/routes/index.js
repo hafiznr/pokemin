@@ -1,7 +1,10 @@
-import Landing from './Landing';
-import Detail from './Detail';
-import MyPokemon from './MyPokemon';
+import { lazy } from 'react';
 import Layout from '../components/Layout';
+
+const Landing = lazy(() => import('./Landing'));
+const Detail = lazy(() => import('./Detail'));
+const MyPokemon = lazy(() => import('./MyPokemon'));
+
 
 const routes = [
   {
