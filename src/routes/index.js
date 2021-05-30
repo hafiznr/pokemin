@@ -1,9 +1,9 @@
 import { lazy } from 'react';
 import Layout from '../components/Layout';
 
-const Landing = lazy(() => import('./Landing'));
-const Detail = lazy(() => import('./Detail'));
-const MyPokemon = lazy(() => import('./MyPokemon'));
+const Landing = lazy(/* istanbul ignore next */() => import('./Landing'));
+const Detail = lazy(/* istanbul ignore next */() => import('./Detail'));
+const MyPokemon = lazy(/* istanbul ignore next */() => import('./MyPokemon'));
 
 
 const routes = [

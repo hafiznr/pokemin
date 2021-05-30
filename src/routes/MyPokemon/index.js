@@ -27,9 +27,9 @@ const MyPokemon = () => {
   }
 
   return (
-    <Box padding="8px 16px 78px 16px">
+    <Box padding="8px 16px 78px 16px" data-testid="mypokemon">
       {myPokemonData.length > 0 ? (
-        <Box>
+        <div>
           {myPokemonData.map(pokemon => (
             <PokemonCard
               id={pokemon.id}
@@ -49,7 +49,7 @@ const MyPokemon = () => {
             onClose={() => setReleased(null)}
             onSubmit={handleSubmitRelease}
           />
-        </Box>
+        </div>
       ) : (
         <Box 
           textAlign="center" 

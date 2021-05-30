@@ -34,6 +34,7 @@ const PokemonType = ({type}) => {
       color="white"
       textShadow="1px 1px 2px rgb(0 0 0 / 70%)"
       mb="4px"
+      data-testid="pokemon-type"
     >
       {type}
     </Box>

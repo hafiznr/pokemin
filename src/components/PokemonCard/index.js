@@ -51,6 +51,7 @@ const PokemonCard = ({
         padding="8px"
         position="relative"
         onClick={handleClickCard}
+        data-testid="pokemon-card"
       >
         <img 
           src={image} 
@@ -85,6 +86,7 @@ const PokemonCard = ({
               right="8px"
               bottom="8px"
               onClick={handleClickRelease}
+              data-testid={`release-button-${nickname}`}
             >
               Release
             </Button>
@@ -93,6 +95,7 @@ const PokemonCard = ({
               fontSize="md"
               borderRadius="full" 
               colorScheme={owned ? "telegram" : "yellow"}
+              data-testid="owned-badge"
             >
               {owned ? `Owned: ${owned}` : 'Not owned'}
             </Badge>

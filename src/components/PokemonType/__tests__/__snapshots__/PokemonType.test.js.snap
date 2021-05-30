@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PokemonType 1`] = `
+<div>
+  <div
+    class="css-1r25m91"
+    data-testid="pokemon-type"
+  />
+</div>
+`;

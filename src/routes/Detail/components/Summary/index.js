@@ -73,7 +73,9 @@ const Summary = ({loading, data}) => {
       value: (
         <OrderedList textTransform="capitalize">
           {abilities?.map((item, i) => (
-            <ListItem key={i}>{item.ability.name}</ListItem>
+            <ListItem key={i} data-testid="abilities">
+              {item.ability.name}
+            </ListItem>
           ))}
         </OrderedList>
       )
@@ -85,7 +87,6 @@ const Summary = ({loading, data}) => {
   ];
 
   const imgFallback = (
-    
       <Skeleton 
         height="96px" 
         width="96px" 
@@ -119,7 +120,11 @@ const Summary = ({loading, data}) => {
               <Td maxWidth="84px">{content.label}</Td>
               <Td>
                 {loading ? (
-                  <Skeleton width="60px" height="14px"/>
+                  <Skeleton 
+                    width="60px" 
+                    height="14px" 
+                    data-testid="summary-skeleton"
+                  />
                 ) : (<>{content.value}</>)}</Td>
             </Tr>
           ))}

@@ -31,7 +31,9 @@ const FailedModal = ({
       
       <ModalContent>
         <ModalHeader>
-          <div css={center}>Aargh! Almost had it!</div>
+          <div css={center} data-testid="failed-title">
+            Aargh! Almost had it!
+          </div>
         </ModalHeader>
         <ModalBody>
           <div css={center}>

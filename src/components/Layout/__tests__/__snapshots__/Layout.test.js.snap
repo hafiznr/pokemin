@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Layout 1`] = `
+<div>
+  <main
+    class="css-1gu03f4-Layout"
+  >
+    <div
+      class="css-1p24ppz"
+    >
+      <div
+        class="css-1y41ry6"
+        data-testid="back-button"
+      >
+        <svg
+          fill="none"
+          height="24"
+          style="display: inline-block;"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="css-1qbkptb"
+      >
+        Pokémin
+      </div>
+    </div>
+    <div
+      class="css-1m966ti"
+    >
+      <a
+        class="css-1ol0xvu"
+        href="/"
+      >
+        <div
+          class="css-13k5o8u"
+        >
+          <div>
+            <svg
+              fill="none"
+              height="22"
+              style="display: inline-block;"
+              viewBox="0 0 24 24"
+              width="22"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M6 22.8787C4.34315 22.8787 3 21.5355 3 19.8787V9.87866C3 9.84477 3.00169 9.81126 3.00498 9.77823H3C3 9.20227 3.2288 8.64989 3.63607 8.24262L9.87868 2.00002C11.0502 0.828445 12.9497 0.828445 14.1213 2.00002L20.3639 8.24264C20.7712 8.6499 21 9.20227 21 9.77823H20.995C20.9983 9.81126 21 9.84477 21 9.87866V19.8787C21 21.5355 19.6569 22.8787 18 22.8787H6ZM12.7071 3.41423L19 9.70713V19.8787C19 20.4309 18.5523 20.8787 18 20.8787H15V15.8787C15 14.2218 13.6569 12.8787 12 12.8787C10.3431 12.8787 9 14.2218 9 15.8787V20.8787H6C5.44772 20.8787 5 20.4309 5 19.8787V9.7072L11.2929 3.41423C11.6834 3.02371 12.3166 3.02371 12.7071 3.41423Z"
+                fill="#FEB2B2"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          Home
+        </div>
+      </a>
+      <a
+        class="css-1ol0xvu"
+        href="/mypokemon"
+      >
+        <div
+          class="css-i21swr"
+        >
+          <div>
+            <svg
+              fill="none"
+              height="24"
+              style="display: inline-block;"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12ZM5.07089 13C5.55612 16.3923 8.47353 19 12 19C15.5265 19 18.4439 16.3923 18.9291 13H14.8293C14.4174 14.1652 13.3062 15 12 15C10.6938 15 9.58251 14.1652 9.17068 13H5.07089ZM18.9291 11C18.4439 7.60771 15.5265 5 12 5C8.47353 5 5.55612 7.60771 5.07089 11H9.17068C9.58251 9.83481 10.6938 9 12 9C13.3062 9 14.4174 9.83481 14.8293 11H18.9291ZM12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                fill="#FEB2B2"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          My Pokémon (0)
+        </div>
+      </a>
+    </div>
+  </main>
+</div>
+`;

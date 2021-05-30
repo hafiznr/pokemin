@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders MyPokemon 1`] = `
+<div>
+  <div
+    class="css-1nsfvvx"
+    data-testid="mypokemon"
+  >
+    <div>
+      <div
+        class="css-gh77c9"
+        data-testid="pokemon-card"
+      >
+        <img
+          alt="ADsadasdas"
+          class="css-1yjt0aa-PokemonCard"
+          height="96px"
+          loading="lazy"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+          width="96px"
+        />
+        <div
+          class="css-0"
+        >
+          <span
+            class="chakra-badge css-uwa4md"
+          >
+            #
+            004
+          </span>
+          <div
+            class="css-1wjjfwl"
+          >
+            ADsadasdas
+          </div>
+          <button
+            class="chakra-button css-ugl883"
+            data-testid="release-button-ADsadasdas"
+            type="button"
+          >
+            Release
+          </button>
+        </div>
+      </div>
+      <div
+        class="css-gh77c9"
+        data-testid="pokemon-card"
+      >
+        <img
+          alt="0"
+          class="css-1yjt0aa-PokemonCard"
+          height="96px"
+          loading="lazy"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+          width="96px"
+        />
+        <div
+          class="css-0"
+        >
+          <span
+            class="chakra-badge css-uwa4md"
+          >
+            #
+            002
+          </span>
+          <div
+            class="css-1wjjfwl"
+          >
+            0
+          </div>
+          <button
+            class="chakra-button css-ugl883"
+            data-testid="release-button-0"
+            type="button"
+          >
+            Release
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders empty MyPokemon 1`] = `
+<div>
+  <div
+    class="css-1nsfvvx"
+    data-testid="mypokemon"
+  >
+    <div
+      class="css-12vkspi"
+    >
+      <div
+        class="css-8atqhb"
+      >
+        <svg
+          fill="none"
+          height="100"
+          style="display: inline-block;"
+          viewBox="0 0 24 24"
+          width="100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12ZM5.07089 13C5.55612 16.3923 8.47353 19 12 19C15.5265 19 18.4439 16.3923 18.9291 13H14.8293C14.4174 14.1652 13.3062 15 12 15C10.6938 15 9.58251 14.1652 9.17068 13H5.07089ZM18.9291 11C18.4439 7.60771 15.5265 5 12 5C8.47353 5 5.55612 7.60771 5.07089 11H9.17068C9.58251 9.83481 10.6938 9 12 9C13.3062 9 14.4174 9.83481 14.8293 11H18.9291ZM12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+            fill="#E2E8F0"
+            fill-rule="evenodd"
+          />
+        </svg>
+        <p
+          class="chakra-text css-6dvxm2"
+        >
+          You don't own any Pokémon right now...
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

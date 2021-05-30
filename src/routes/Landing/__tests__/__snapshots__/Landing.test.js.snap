@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Landing with loading 1`] = `
+<div>
+  <div
+    class="css-1wxv3d5"
+  >
+    <div
+      class="chakra-stack css-n21gh5"
+    >
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders Landing with result 1`] = `
+<div>
+  <div
+    class="css-1wxv3d5"
+  >
+    <div
+      class="css-1yz1o5g"
+    >
+      Something went wrong. Please try again later
+    </div>
+    <div
+      class="chakra-stack css-n21gh5"
+    >
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+      <div
+        class="chakra-skeleton css-1ylkj6c"
+      />
+    </div>
+  </div>
+</div>
+`;
