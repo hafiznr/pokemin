@@ -2,30 +2,14 @@
 /** @jsx jsx */
 import { useEffect, useState, useContext } from 'react';
 import { jsx } from '@emotion/react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Skeleton, Box, Stack } from '@chakra-ui/react';
 
 import PokemonCard from '../../components/PokemonCard';
 
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
-const GET_POKEMONS = gql`
-  query pokemons($limit: Int, $offset: Int) {
-    pokemons(limit: $limit, offset: $offset) {
-      count
-      next
-      previous
-      status
-      message
-      results {
-        id
-        url
-        name
-        image
-      }
-    }
-  }
-`;
+import { GET_POKEMONS } from './queries';
 
 const Landing = () => {
   const { myPokemonData } = useContext(MyPokemonContext);

@@ -22,8 +22,6 @@ import { capitalizeFirstLetter } from '../../utils';
 // context
 import { MyPokemonContext } from '../../contexts/MyPokemonContext';
 
-const CATCH_PROBABILITY = 0.5;
-
 const Detail = () => {
   const { addPokemon } = useContext(MyPokemonContext);
 
@@ -48,7 +46,8 @@ const Detail = () => {
   const capitalizedName = capitalizeFirstLetter(name);
 
   const handleClickCatch = () => {
-    const isSuccess = Math.random() <= CATCH_PROBABILITY;
+    const probability = +process.env.REACT_APP_CATCH_PROBABILITY;
+    const isSuccess = Math.random() <= probability;
 
     if(isSuccess) {
       setShowModal('success');
@@ -76,11 +75,22 @@ const Detail = () => {
         </Box>
       )}
 
-      <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb="8px">
+      <Box 
+        textAlign="center" 
+        fontSize="2xl" 
+        fontWeight="bold" 
+        mb="8px"
+      >
         {loading ? (
-          <Skeleton height="27px" mb="8px"/>
+          <Skeleton 
+            height="27px" 
+            mb="8px" 
+            data-testid="name-skeleton"
+          />
         ) : (
-          <>{capitalizedName}</>
+          <div data-testid="capital-name">
+            {capitalizedName}
+          </div>
         )}
       </Box>
 
@@ -94,13 +104,17 @@ const Detail = () => {
         margin="16px 0"
       >
         {loading ? (
-          <Skeleton height="36px" />
+          <Skeleton 
+            height="36px" 
+            data-testid="catch-button-skeleton"
+          />
         ) : (
           <Button 
             size="lg"
             colorScheme="twitter"
             width="100%"
             onClick={handleClickCatch}
+            data-testid="catch-button"
           >
             Catch!
           </Button>
