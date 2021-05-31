@@ -50,6 +50,8 @@ const PokemonCard = ({
         gridTemplateColumns="96px 1fr"
         padding="8px"
         position="relative"
+        cursor="pointer"
+        _hover={{backgroundColor:'#FC8181'}}
         onClick={handleClickCard}
         data-testid="pokemon-card"
       >

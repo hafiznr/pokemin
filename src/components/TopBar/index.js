@@ -27,6 +27,7 @@ const TopBar = () => {
         <Box
           pos="absolute"
           top="8px"
+          cursor="pointer"
           onClick={() => history.goBack()}
           data-testid="back-button"
         >
