@@ -73,6 +73,7 @@ const MenuBar = () => {
               height="100%"
               p="12px"
               fontWeight="bold"
+              _hover={{backgroundColor: '#FC8181'}}
               {...menu.customProps}
             >
               <div>{menu.icon}</div>
